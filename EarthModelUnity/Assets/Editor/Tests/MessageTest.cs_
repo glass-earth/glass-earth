@@ -1,0 +1,28 @@
+
+using NUnit.Framework;
+using System;
+
+namespace Networking
+{
+		[TestFixture()]
+		public class MessageTest
+		{
+				[Test()]
+				public void TestCase ()
+				{
+						var json1 = "{\"type\":\"handshake/connect\",\"role\":\"app\",\"channel_name\":\"channel-1\",\"description\":null,\"from_id\":0,\"peer_id\":0,\"to_id\":0,\"to\":null}";
+						var json2 = "{\"type\":\"handshake/accept\",\"role\":\"server\",\"peer_id\":31318}";
+						var json3 = "{\"type\":\"handshake/peers\",\"role\":\"server\",\"peers\":[{\"id\":78081,\"role\":\"app\",\"status\":\"\"},{\"id\":47887,\"role\":\"app\",\"status\":\"\"},{\"id\":11847,\"role\":\"app\",\"status\":\"\"},{\"id\":34059,\"role\":\"app\",\"status\":\"\"},{\"id\":32081,\"role\":\"app\",\"status\":\"\"},{\"id\":31318,\"role\":\"app\",\"status\":\"\"}]}";
+
+						var msg1 = Message.Unmarshal (json1);
+						Console.WriteLine (msg1);
+
+						var msg2 = Message.Unmarshal (json2);
+						Console.WriteLine (msg2);
+
+						var msg3 = Message.Unmarshal (json3);
+						Console.WriteLine (msg3);
+				}
+		}
+}
+
