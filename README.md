@@ -26,7 +26,7 @@ Glass Earth uses these tools & SDKs:
 
 1. **EarthModelUnity**
 
-  Render graph from [GIBS](https://wiki.earthdata.nasa.gov/display/GIBS/GIBS+Available+Imagery+Products) onto an Earth model. There are two scenes. One scene renders 4 viewports of Earth for displaying the 3D model inside prism. The other renders 4 different graphs for displaying on projector. The application connects to **center-server** for receiving controlling messages from Leap Motion and controller.
+  Render graph from [GIBS](https://wiki.earthdata.nasa.gov/display/GIBS/GIBS+Available+Imagery+Products) onto an Earth model. There are two scenes. One scene renders 4 viewports of Earth for displaying the 3D model inside prism. The other renders 4 different graphs for displaying on projector. The application connects to **center-server** for receiving controlling messages from **Leap Motion** and **controller**.
 
 2. **LeapMotion**
 
