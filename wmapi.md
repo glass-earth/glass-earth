@@ -4,7 +4,7 @@
 
 We make the data available for public at [glassearth.net/wmapi/](http://glassearth.net/wmapi/). The public API is called WMAPI.
 
-**Note: All data is get from [GIBS](https://github.com/glass-earth/glass-earth/tree/master/gibs-data) service. We do not own the data.**
+**Note: All data is get from [GIBS](https://wiki.earthdata.nasa.gov/display/GIBS/GIBS+Available+Imagery+Products) service. We do not own the data.**
 
 ![compare result][1]
 
