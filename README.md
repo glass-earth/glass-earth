@@ -57,8 +57,8 @@ Follow the instruction in [getting-started.md](https://github.com/glass-earth/gl
 ## Developer Documents
 
 * **[protocol](https://github.com/glass-earth/glass-earth/blob/master/protocol.md)**
-* **[wmapi](https://github.com/glass-earth/glass-earth/blob/master/wmapi.md)**
 * **[gibs-data](https://github.com/glass-earth/glass-earth/tree/master/gibs-data)**
+* **[wmapi](https://github.com/glass-earth/glass-earth/blob/master/wmapi.md)**
 
 ## Resources
 
