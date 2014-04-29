@@ -28,15 +28,15 @@ Glass Earth uses these tools & SDKs:
 
   Render graph from [GIBS](https://wiki.earthdata.nasa.gov/display/GIBS/GIBS+Available+Imagery+Products) onto an Earth model. There are two scenes. One scene renders 4 viewports of Earth for displaying the 3D model inside prism. The other renders 4 different graphs for displaying on projector. The application connects to **center-server** for receiving controlling messages from Leap Motion and controller.
 
-* **LeapMotion**
+2. **LeapMotion**
 
   Control the graphs using Leap Motion.
 
-* **AstronomersAndroid (controller)**
+3. **AstronomersAndroid (controller)**
 
   Control the graphs using Android tablet. Supports NFC and gesture. This application allows teacher to select current lesson and control whole system. Students may tap their smartphone to open **web application** via NFC.
 
-* **center-server**
+4. **center-server**
 
   **Control server** connects other devices, manage state of whole system and forwards messages between **EarthModelUnity**, **Leap Motion**, **controller** and **web application**.
 
