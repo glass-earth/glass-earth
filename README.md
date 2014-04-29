@@ -42,7 +42,7 @@ Glass Earth uses these tools & SDKs:
 
   **Web server** serves home page, **web application** and **api**.
 
-  **Web application** for students to read lessons. This application connects to server via websocket and will display the current lesson. It will updated content as soon as teacher change using **controller**.
+  **Web application** for students to read lessons. This application connects to server via websocket and will display the current lesson. It will update content as soon as teacher changes current lesson by using **controller**.
 
   **API server** at /wmapi/
 
