@@ -46,6 +46,10 @@ Glass Earth uses these tools & SDKs:
 
   **API server** at /wmapi/
 
+5. **gibs-data**
+
+  Download and process data from GIBS service. More information: [github.com/glass-earth/glass-earth/tree/master/gibs-data](https://github.com/glass-earth/glass-earth/tree/master/gibs-data)
+
 ## Getting Started
 
 Follow the instruction in [getting-started.md](https://github.com/glass-earth/glass-earth/blob/master/getting-started.md)
