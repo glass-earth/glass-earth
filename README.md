@@ -48,7 +48,22 @@ Glass Earth uses these tools & SDKs:
 
 ## Getting Started
 
-Follow the instruction in [getting-started.md](https://github.com/glass-earth/glass-earth/blob/master/README.md)
+Follow the instruction in [getting-started.md](https://github.com/glass-earth/glass-earth/blob/master/getting-started.md)
+
+## Developer Documents
+
+* **[protocol](https://github.com/glass-earth/glass-earth/blob/master/protocol.md)**
+* **[wmapi](https://github.com/glass-earth/glass-earth/blob/master/wmapi.md)**
+
+## Resources
+
+* Video - [youtube.com/watch?v=QeqrtSaIRg0](https://www.youtube.com/watch?v=QeqrtSaIRg0)
+* Sample Lesson: Colorado Wildfires - [spaceapps.glassearth.net/lesson/colorado-wildfires](http://spaceapps.glassearth.net/lesson/colorado-wildfires)
+* Sample Lesson: Whale Migration - [spaceapps.glassearth.net/lesson/whale-migration](http://spaceapps.glassearth.net/lesson/whale-migration)
+* Web App Demo (for student) - [spaceapps.glassearth.net/app](http://spaceapps.glassearth.net/app)
+* Android Controller Demo (for teacher) - [spaceapps.glassearth.net/controller](http://spaceapps.glassearth.net/controller)
+* Unity Demo (for projector) - [spaceapps.glassearth.net/unity](http://spaceapps.glassearth.net/unity)
+* Glass Earth website - [spaceapps.glassearth.net](http://spaceapps.glassearth.net/)
 
 ## Credits
 
