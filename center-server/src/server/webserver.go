@@ -43,6 +43,7 @@ func startWebServer() {
 	http.HandleFunc("/graph/", makeGraphHandler("GraphHandler", "/graph/", *flPublic+"/graph/"))
 	http.HandleFunc("/ctrl_channel/", makeHandler("CtrlChannelHandler", "/ctrl_channel.html"))
 	http.HandleFunc("/ctrl_graph/", makeGraphHandler("CtrlGraphHandler", "/ctrl_graph/", *flPublic+"/ctrl_graph/"))
+	http.HandleFunc("/"+configWMApi+"/", handleApi)
 
 	logI("HTTP Server is listening on", *flHttpPort)
 

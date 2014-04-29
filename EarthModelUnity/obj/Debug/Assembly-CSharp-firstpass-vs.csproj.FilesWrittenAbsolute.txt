@@ -1,0 +1,11 @@
+/Users/tuanchauict/workspace/OpenSource/astronomers/EarthModelUnity/Temp/bin/Debug/Assembly-CSharp-firstpass.dll.mdb
+/Users/tuanchauict/workspace/OpenSource/astronomers/EarthModelUnity/Temp/bin/Debug/Assembly-CSharp-firstpass.dll
+/Users/tuanchauict/workspace/OpenSource/astronomers/EarthModelUnity/obj/Debug/Assembly-CSharp-firstpass.dll
+/Users/tuanchauict/workspace/OpenSource/astronomers/EarthModelUnity/obj/Debug/Assembly-CSharp-firstpass.dll.mdb
+/Users/tuanchauict/workspace/OpenSource/astronomers/EarthModelUnity/Temp/bin/Debug/UnityEngine.dll
+/Users/tuanchauict/workspace/OpenSource/astronomers/EarthModelUnity/Temp/bin/Debug/UnityEditor.dll
+/Users/tuanchauict/workspace/OpenSource/astronomers/EarthModelUnity/Temp/bin/Debug/ICSharpCode.SharpZipLib.dll
+/Users/tuanchauict/workspace/OpenSource/astronomers/EarthModelUnity/Temp/bin/Debug/Mono.Cecil.dll
+/Users/tuanchauict/workspace/OpenSource/astronomers/EarthModelUnity/Temp/bin/Debug/nunit.framework.dll
+/Users/tuanchauict/workspace/OpenSource/astronomers/EarthModelUnity/Temp/bin/Debug/Unity.DataContract.dll
+/Users/tuanchauict/workspace/OpenSource/astronomers/EarthModelUnity/Temp/bin/Debug/ICSharpCode.NRefactory.dll

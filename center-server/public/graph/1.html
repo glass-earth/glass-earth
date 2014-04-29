@@ -1,0 +1,263 @@
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Glass Earth</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="/smartphone//css/style.css" type="text/css" media="all" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Bluebox Iphone web template, Andriod web template, Smartphone web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <script type="application/x-javascript">
+    addEventListener("load", function() {
+        setTimeout(
+            hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        //window.scrollTo(0, 1);
+    }
+    </script>
+    <link href='/smartphone//font/font.css' rel='stylesheet' type='text/css'>
+    <!-- jQuery -->
+    <script type="text/javascript" src="/smartphone//js/jquery.min.js"></script>
+    <script src="/smartphone//js/mobile.js"></script>
+    </script>
+    <script type="text/javascript">
+    window.onload = function() {
+        w3Init();
+    };
+    </script>
+    <!-- start js -->
+    <script type="text/javascript" src="/smartphone//js/move-top.js"></script>
+    <script type="text/javascript" src="/smartphone//js/easing.js"></script>
+    <script type="text/javascript">
+    jQuery(document).ready(function($) {
+        $("body").delegate('.scroll', 'click', function(event) {
+            event.preventDefault();
+
+            // $('#ge-lesson').hide();
+            $('#ge-notif-box').fadeOut();
+            // $(this.hash).show();
+            loadajax($(this).attr('href'));
+
+            $('html,body').animate({
+                scrollTop: $('#ge-toc').offset().top
+            }, 500);
+        });
+        loadajax('http://192.168.1.102:8080/graph/default');
+    });
+    </script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+
+        var defaults = {
+            containerID: 'toTop', // fading element id
+            containerHoverID: 'toTopHover', // fading element hover id
+            scrollSpeed: 1200,
+            easingType: 'linear'
+        };
+
+
+        $().UItoTop({
+            text: '',
+            easingType: 'easeOutQuart',
+            scrollSpeed: 500
+        });
+
+    });
+    </script>
+    <!-- Add fancyBox main JS and CSS files -->
+    <script src="/smartphone//js/jquery.magnific-popup.js" type="text/javascript"></script>
+    <link href="/smartphone//css/magnific-popup.css" rel="stylesheet" type="text/css">
+    <script src="/smartphone//js/jquery.wmuSlider.js"></script>
+    <script src="/smartphone//js/websocket.js"></script>
+    <script>
+    var loadajax = function(url) {
+        $.ajax({
+            url: url,
+            success: function(data) {
+                console.log(data);
+
+                $('#ge-lesson').empty();
+                $('#ge-lesson').append(data);
+
+                // Insert item title to Table of content
+                var header = $($(data)[0]).html();
+                console.log(header);
+                var elem = '<article><div class="banner-wrap"><div class="cont span_2_of_3"><a class="scroll"><h1></h1></a></div><div class="clear"></div></div></article>';
+                var elem_dom = $(elem);
+                elem_dom.find('a').attr('href', url);
+                elem_dom.find('h1').html(header);
+                $('#ge-toc-content').append(elem_dom);
+            }
+        });
+    }
+    $(document).ready(function() {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+            fixedContentPos: false,
+            fixedBgPos: true,
+            overflowY: 'auto',
+            closeBtnInside: true,
+            preloader: false,
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+        $('.example1').wmuSlider({
+            slideshowSpeed: 0,
+            touch: true
+        });
+        $('#ge-all').click(function() {
+            $('.example1').wmuSlider({
+                slideshowSpeed: 0,
+                touch: true
+            });
+        });
+        clientSocket.oninfo = function(url, title) {
+            $('#ge-notif-box').attr('href', url);
+            $('#ge-notif-box').fadeIn();
+            $('#ge-next').html(title);
+        };
+        //clientSocket.init('ws://192.168.1.102:8080/ws/');
+    });
+    </script>
+    <style>
+    .wmuSliderPrev, .wmuSliderNext {
+        top: 20%;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="single-header">
+            <ul id="header">
+                <a href="index.html">
+                    <img src="/smartphone//images/logo.png" alt="">
+                </a>
+            </ul>
+            <div id="w3-mobile-options"></div>
+            <ul id="w3-menu-links" style="display: none;" class=" ">
+                <li><a href="index.html">Home</a>
+                </li>
+                <li><a href="works.html">Discussion</a>
+                </li>
+                <li><a href="about.html">About</a>
+                </li>
+            </ul>
+        </div>
+        <div class="main">
+            <div class="grid-box2" id="ge-lesson">
+                <h4 class="single-head">2013 Colorado wildfires</h4>
+                <div class="col_1_of_2 span_1_of_2">
+                    <a class="popup-with-zoom-anim" href="#small-dialog1">
+                        <img src="/assets/images/colorado/o-COLORADO-WILDFIRES-2013-facebook.jpg" title="continue" alt="">
+                    </a>
+
+                    <p>Place: Colorado, USA</p>
+                    <p>Time: June – July 2013</p>
+                    <p>&nbsp;</p>
+                    <p>In the summer of 2013, there were several major wildfires in Colorado in the United States. During June and July, record high temperatures and dry conditions fueled the fires all across the state. By July 24, 570 structures had been destroyed and 2 lives were lost. Below is a list of the major fires of the year.</p>
+                    <h3>Informations of some biggest 2013 Colorado wildfires:</h3>
+                    <video id="vid1" controls poster='/assets/images/colorado/1.jpg' autoplay>
+                        <source src="/assets/video/1.mp4" type="video/mp4">
+                    </video>
+                    <style>
+                    ul#wild-fire-list li {
+                        margin-bottom: 15px;
+                    }
+                    </style>
+                    <p>&nbsp;</p>
+                    <ul id='wild-fire-list'>
+                        <li>
+                            <p>
+                                <span class='ge-em'>Name:</span>Royal Gorge Fire</p>
+                            <p>
+                                <span class='ge-em'>Area:</span>Royal Gorge</p>
+                            <p>
+                                <span class='ge-em'>Size:</span>3,800 acres (1,500 ha)</p>
+                            <p>
+                                <span class='ge-em'>Notes:</span>Started June 11, 2013; jumped Royal Gorge and damaged the Royal <!-- Gorge Bridge.</p>
+                        </li>
+                        <li>
+                            <p>
+                                <span class='ge-em'>Name:</span>East Peak Fire</p>
+                            <p>
+                                <span class='ge-em'>Area:</span>East Spanish Peak</p>
+                            <p>
+                                <span class='ge-em'>Size:</span>13,572 acres (5,492 ha)</p>
+                            <p>
+                                <span class='ge-em'>Notes:</span>Started June 19, 2013; put the entire town of Walsenburg, Colorado under pre-evacuation status. Cause: Lightning.</p>
+                        </li>
+                        <li>
+                            <p>
+                                <span class='ge-em'>Name:</span>West Fork Fire Complex</p>
+                            <p>
+                                <span class='ge-em'>Area:</span>Wolf Creek Pass</p>
+                            <p>
+                                <span class='ge-em'>Size:</span>110,405 acres (44,679 ha)</p>
+                            <p>
+                                <span class='ge-em'>Notes:</span>The second largest fire in Colorado history by area. Started June 20, 2013; forced evacuation of entire town of South Fork, Colorado. The fire is composed of three subsidiary fires that merged: West Fork fire, Papoose fire and Windy Pass fire. Cause: Lightning.</p>
+                        </li>
+                    </ul> -->
+
+                    <h3>Read more news:</h3>
+                    <p><a href='http://www.denverpost.com/coloradowildfires2013' class='ge-ref'>http://www.denverpost.com/coloradowildfires2013</a>
+                    </p>
+                    <p><a href='http://www.coloradofiremaps.com/tag/2013/' class='ge-ref'>http://www.coloradofiremaps.com/tag/2013/</a>
+                    </p>
+                    <p><a href='http://www.huffingtonpost.com/news/colorado-wildfires-2013/' class='ge-ref'>http://www.huffingtonpost.com/news/colorado-wildfires-2013/</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="footer">
+            <div class="footer-left">
+                <div class="copy">
+                    <p>© 2014 Template by <a href="http://w3layouts.com" target="_blank">w3layouts</a>
+                    </p>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div> -->
+
+        <a href='http://192.168.1.102:8080/graph/colorado_wildfires' id='ge-notif-box' class='scroll'>
+            <div id='ge-next-wrapper'>
+                On board:
+                <span id='ge-next'></span>
+            </div>
+        </a>
+        <!-- <a id='ge-all' href='#ge-toc' class='popup-with-zoom-anim'>
+            <div id='ge-count'>10</div>
+            <div style='font-size: 8px; margin-top: -5px;'>slides</div>
+        </a> -->
+        <div id="ge-toc" class="mfp-hide">
+            <div class="index-banner pop_up2">
+                <div id='ge-toc-content' class="wmuSlider example1">
+                    <!-- <article><div class="banner-wrap"><div class="cont span_2_of_3"><h1></h1></div><div class="clear"></div></div></article> -->
+                </div>
+            </div>
+        </div>
+        <a href="#" id="toTop" style="display: block;">
+            <span id="toTopHover" style="opacity: 1;"></span>
+        </a>
+    </div>
+<script>
+    var vid_1 = document.getElementById('vid1');
+    vid_1.addEventListener('loadedmetadata', function() {
+      this.currentTime = 55;
+      vid_1.play();
+    }, false);
+</script>
+</body>
+
+</html>

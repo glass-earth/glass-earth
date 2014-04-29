@@ -1,32 +1,35 @@
 package main
 
-const (
-	LeapTypeFinger = "finger"
-	LeapTypeTool   = "tool"
-)
+// const (
+// 	LeapTypeFinger = "finger"
+// 	LeapTypeTool   = "tool"
+// )
 
-type (
-	Vector3 struct {
-		x float64
-		y float64
-		z float64
-	}
+// type (
+// 	Vector3 struct {
+// 		x float64
+// 		y float64
+// 		z float64
+// 	}
 
-	LeapPointables struct {
-		list []*LeapPointable
-	}
+// 	LeapPointables struct {
+// 		list []*LeapPointable
+// 	}
 
-	LeapPointable struct {
-		tipPosition Vector3
-		length      float64
-		width       float64
-		direction   Vector3
-		tipVelocity Vector3
-		type_       string
-		id          int
-		frame_id    int
-	}
-)
+// 	LeapPointable struct {
+// 		tipPosition Vector3
+// 		length      float64
+// 		width       float64
+// 		direction   Vector3
+// 		tipVelocity Vector3
+// 		type_       string
+// 		id          int
+// 		frame_id    int
+// 	}
+// )
+
+/*
+// Disable receiving data from Leap
 
 func HandleLeapMessage(msg *Message) *Message {
 	leap := parseLeapPointables(msg.Data)
@@ -182,3 +185,4 @@ func gestureEvent(msg *Message, leap *LeapPointables) *Message {
 
 	return nil
 }
+*/

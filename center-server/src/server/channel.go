@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
 	"math/rand"
@@ -9,7 +10,6 @@ import (
 	"time"
 )
 
-// ChannelManager
 type ChannelManager struct {
 	channels map[string]*Channel
 	mutex    sync.Mutex
@@ -45,11 +45,16 @@ func (cm *ChannelManager) RemoveChannel(name string) {
 	delete(cm.channels, name)
 }
 
+type ChannelInfo struct {
+	GraphNames []string
+}
+
 type Channel struct {
-	name      string
-	conns     map[int]IConn
-	state     MsgState
-	graphName string
+	name        string
+	conns       map[int]IConn
+	state       MsgState
+	story       StoryInfo
+	activeGraph string
 
 	ch chan ChannelMessage
 	// regCh   chan IConn
@@ -84,9 +89,11 @@ func NewChannel(name string) *Channel {
 	c.name = name
 	c.conns = make(map[int]IConn)
 	c.ch = make(chan ChannelMessage)
-	// c.regCh = make(chan IConn)
-	// c.unregCh = make(chan IConn)
 	c.closeCh = make(chan bool)
+
+	c.state = configDefaultState
+	c.story = *(configStoryInfo[configDefaultStory])
+	c.activeGraph = c.story.Graphs[0]
 
 	return c
 }
@@ -132,6 +139,10 @@ func HandleMessage(conn IConn, msg *Message) {
 	} else {
 		logE("HandleMessage: Status not ok", conn.Status())
 	}
+}
+
+func (c *Channel) Name() string {
+	return c.name
 }
 
 func (c *Channel) String() string {
@@ -261,12 +272,14 @@ func (c *Channel) handleHandshake(conn IConn, msg *Message) {
 			expect(oldConn.Status() == statusDrop || oldConn.Status() == statusDisconnected, "Expect handshake/reconnect resume from dropped connection")
 		}
 
+		logV("Call statusReady", peerId, msg)
 		conn.StatusReady(peerId, msg.Role, msg.ChannelName)
 
 		var resMsg = &Message{
-			Type:   MsgTypeHandshakeAccept,
-			Role:   MsgRoleServer,
-			PeerId: peerId,
+			Type:        MsgTypeHandshakeAccept,
+			Role:        MsgRoleServer,
+			PeerId:      peerId,
+			ChannelName: c.name,
 		}
 
 		if *flError && rand.Intn(2) == 1 {
@@ -310,7 +323,7 @@ func (c *Channel) handleControl(conn IConn, msg *Message) bool {
 			Type: MsgTypeGraphList,
 			Role: MsgRoleServer,
 			Data: map[string]interface{}{
-				"graph_names": configListGraph,
+				"graph_names": c.story.Graphs,
 			},
 		}
 		conn.Send(resMsg)
@@ -321,8 +334,22 @@ func (c *Channel) handleControl(conn IConn, msg *Message) bool {
 		return true
 
 	case MsgTypeAppState:
-		// TODO
-		// c.state = m
+
+		if msg.Role != MsgRoleApp {
+			logE("app/state not allow", msg)
+			return false
+		}
+
+		var state MsgState
+		err := json.Unmarshal(msg.RawData, &state)
+		if err != nil {
+			logE("app/state invalid", err)
+			return false
+		}
+
+		c.state = state
+
+		msg.To = MsgRoleController
 		c.Broadcast(conn.Id(), msg)
 		return false
 
@@ -330,23 +357,84 @@ func (c *Channel) handleControl(conn IConn, msg *Message) bool {
 
 		data := msg.Data.(map[string]interface{})
 		graphName := data["graph_name"].(string)
-		c.graphName = graphName
+		c.activeGraph = graphName
 
-		c.sendGraphInfo(conn)
+		msg.To = MsgRoleApp
+
+		c.sendGraphInfo(nil)
 		c.handleForward(conn, msg)
 		return true
 
-	case MsgTypeLeapPointable:
-		fMsg := HandleLeapMessage(msg)
-		logV("leap", fMsg)
-		if fMsg != nil {
-			c.handleForward(conn, fMsg)
-		}
-		return false
+	case MsgTypeLeapGestureSwipe:
+		c.handleLeapSwipe(conn, msg)
+		return true
+
+	// case MsgTypeLeapPointable:
+	// 	fMsg := HandleLeapMessage(msg)
+	// 	logV("leap", fMsg)
+	// 	if fMsg != nil {
+	// 		c.handleForward(conn, fMsg)
+	// 	}
+	// 	return false
 
 	default:
 		c.handleForward(conn, msg)
 		return false
+	}
+}
+
+func (c *Channel) handleLeapSwipe(conn IConn, msg *Message) {
+	fMsg := &Message{
+		Role: MsgRoleLeap,
+		To:   MsgRoleApp,
+	}
+
+	switch msg.State {
+	case "up":
+		fMsg.Type = MsgTypeGraphWordmap
+		fMsg.Data = map[string]interface{}{
+			"enabled": true,
+		}
+
+	case "down":
+		fMsg.Type = MsgTypeGraphWordmap
+		fMsg.Data = map[string]interface{}{
+			"enabled": false,
+		}
+
+	case "left":
+		var v float64
+		if c.state.EarthVelocity > 0.01 {
+			v = 0
+		} else {
+			v = 1
+		}
+		c.state.EarthVelocity = v
+
+		fMsg.Type = MsgTypeEarthRotate
+		fMsg.Data = map[string]interface{}{
+			"velocity": v,
+		}
+
+	case "right":
+		next := c.story.Graphs[0]
+		for i, name := range c.story.Graphs {
+			if name == c.activeGraph {
+				next = c.story.Graphs[(i+1)%len(c.story.Graphs)]
+				break
+			}
+		}
+		fMsg.Type = MsgTypeGraphSwitch
+		fMsg.Data = map[string]interface{}{
+			"graph_name": next,
+		}
+
+		c.activeGraph = next
+		defer c.sendGraphInfo(nil)
+	}
+
+	if fMsg != nil {
+		c.handleForward(conn, fMsg)
 	}
 }
 
@@ -372,23 +460,25 @@ func (c *Channel) handleForward(conn IConn, msg *Message) {
 // conn nil to broadcast
 func (c *Channel) sendGraphInfo(conn IConn) {
 
-	defaultGraphInfo := configGraphInfo[c.graphName]
+	defaultGraphInfo := configGraphInfo[c.activeGraph]
 	if defaultGraphInfo == nil {
-		logI("GraphName not exist", c.graphName)
-		c.graphName = configDefaultGraph
-		defaultGraphInfo = configGraphInfo[c.graphName]
+		logI("GraphName not exist", c.activeGraph)
+		c.activeGraph = configDefaultGraph
+		defaultGraphInfo = configGraphInfo[c.activeGraph]
 		conn = nil // broadcast
 	}
 
 	origin := fmt.Sprint("http://"+*flHost+":", *flHttpPort)
 
 	graphInfo := &MsgGraphInfo{
-		GraphName:            c.graphName,
+		// TODO
+		// GraphNames:           c.info.graphNames,
+		GraphName:            c.activeGraph,
 		GraphLabel:           defaultGraphInfo.GraphLabel,
 		GuestUrl:             origin + configPathChannel + c.name,
-		GuestContentUrl:      origin + configPathGraph + c.graphName,
+		GuestContentUrl:      origin + configPathGraph + c.activeGraph,
 		ControllerUrl:        origin + configPathCtrlChannel + c.name,
-		ControllerContentUrl: origin + configPathCtrlGraph + c.graphName,
+		ControllerContentUrl: origin + configPathCtrlGraph + c.activeGraph,
 	}
 
 	resMsg := &Message{
@@ -398,7 +488,7 @@ func (c *Channel) sendGraphInfo(conn IConn) {
 	}
 
 	if conn == nil {
-		resMsg.To = MsgToChannelGuest
+		resMsg.To = MsgToCtrlGuest
 		c.Broadcast(0, resMsg)
 
 	} else {
@@ -452,32 +542,35 @@ func (c *Channel) Broadcast(fromId int, msg *Message) (err interface{}) {
 		return nil
 	}
 
-	switch msg.To {
-	case MsgRoleApp, MsgRoleController, MsgRoleGuest:
-		for id, conn := range c.conns {
-			if id != fromId && msg.To == conn.Role() {
-				conn.Send(msg)
-			}
+	tos := strings.Split(msg.To, ",")
+	var toApp, toCtrl, toGuest, toLeap bool
+	// var toChannel bool
+	for _, t := range tos {
+		switch t {
+		case MsgRoleApp:
+			toApp = true
+		case MsgRoleController:
+			toCtrl = true
+		case MsgRoleGuest:
+			toGuest = true
+		case MsgRoleLeap:
+			toLeap = true
+		case MsgToChannel:
+			// toChannel = true
+		default:
+			panic(errors.New("Expect `to` has a valid value (controller, app, leap, channel, guest)"))
 		}
+	}
 
-		// Never broadcast to leap & controller
-	case MsgToChannel:
-		for id, conn := range c.conns {
-			if id != fromId && (conn.Role() == MsgRoleApp) {
-				conn.Send(msg)
-			}
+	for id, conn := range c.conns {
+		role := conn.Role()
+		if id != fromId && ((toApp && role == MsgRoleApp) ||
+			(toCtrl && role == MsgRoleController) ||
+			(toGuest && role == MsgRoleGuest) ||
+			(toLeap && role == MsgRoleLeap)) {
+			logV("Will Send", msg)
+			conn.Send(msg)
 		}
-
-		// Never broadcast to leap & controller
-	case MsgToChannelGuest:
-		for id, conn := range c.conns {
-			if id != fromId && (conn.Role() == MsgRoleApp || conn.Role() == MsgRoleGuest) {
-				conn.Send(msg)
-			}
-		}
-
-	default:
-		panic(errors.New("Expect `to` has a valid value (controller, app, leap, channel)"))
 	}
 
 	return nil

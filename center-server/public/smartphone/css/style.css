@@ -713,7 +713,7 @@ ul.sidebar li a:hover{
 	padding:30px 10px 10px;
 }
 .grid-box2{
-	background:#f4776d;
+	background:#fff89c;
 	padding:30px 10px 10px;
 }
 .grid-box3{
@@ -727,7 +727,7 @@ ul.sidebar li a:hover{
 	margin-bottom: 20px;
 }
 .span_1_of_2 h3{
-	color: #fff;
+	color: #000;
 	font-size: 1.2em;
 	line-height: 1.2;
 	font-weight: normal;
@@ -737,7 +737,7 @@ ul.sidebar li a:hover{
 }
 .span_1_of_2  p{
 	font-size:0.8125em;
-	color:#fff;
+	color:#333;
 	line-height: 1.5em;
 }
 .single-menu{
@@ -760,7 +760,7 @@ ul.sidebar li a:hover{
 	font-size:1.3em;
 }
 h4.single-head{
-	color: #FFF;
+	color: #333;
 	font-size:1.5em;
 	margin-bottom:10px;
 }
@@ -1125,8 +1125,8 @@ h4.contact-head {
 	-o-text-shadow: 1px 1px 6px #aaa;
 }
 #ge-notif-box {
-	background: #005A57;
-	display: block;
+	background: #f4776d;
+	display: none;
 	position: fixed;
 	bottom: 0;
 	left: 0;
@@ -1199,7 +1199,7 @@ h4.contact-head {
 }
 
 .ge-em {
-	color: #bbb;
+	color: #000;
 	font-weight: bold;
 }
 
@@ -1213,5 +1213,14 @@ h4.contact-head {
 }
 
 body {
-	background: #f4776d;
+	background: #fff89c;
+}
+
+.ge-ref {
+	color: #f00;
+}
+
+video {
+	width: 100%    !important;
+	height: auto   !important;
 }

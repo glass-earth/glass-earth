@@ -33,6 +33,15 @@ public class EarthMeterialChanger : MonoBehaviour {
 	public Light lightF;
 	public Light lightB;
 
+    private int matState = -1;
+    private const int kMatStateNone = -1;
+    private const int kMatStateLandTemp = 1;
+    private const int kMatStateSnowCover = 2;
+    private const int kMatStateEarth = 3;
+
+    private const int kMatStateRunTimeline = 100;
+    private const int kMatStateStopTimeline = 101;
+
 
 	private DateTime date852012 = new DateTime (2012, 5, 8);
 	// Use this for initialization
@@ -58,18 +67,22 @@ public class EarthMeterialChanger : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKey (KeyCode.C)) {
+//        print("state = " + matState);
+		if (Input.GetKey (KeyCode.C) || matState == kMatStateRunTimeline) {
 			RunTimeline ();
-		} else if (Input.GetKey (KeyCode.V)) {
+            matState = kMatStateNone;
+		} else if (Input.GetKey (KeyCode.V) || matState == kMatStateStopTimeline) {
 			StopTimeline ();
-		} else if (Input.GetKey (KeyCode.B)) {
-			ShowLandTemp ();
+		} else if (Input.GetKey (KeyCode.B) || matState == kMatStateLandTemp) {
+			DoShowLandTemp ();
 			print ("Land temp");
 			print ("texture length = " + textures.Length);
-		} else if (Input.GetKey (KeyCode.N)) {
-			ShowEarth ();
+            matState = kMatStateNone;
+		} else if (Input.GetKey (KeyCode.N) || matState == kMatStateEarth) {
+			DoShowEarth ();
 			print ("Earth temp");
 			print ("texture length = " + textures.Length);
+            matState = kMatStateNone;
 		} 
 
 		if(triggerChange){
@@ -85,14 +98,8 @@ public class EarthMeterialChanger : MonoBehaviour {
 		}
 
 
-		Blend(counter);
+//		Blend(counter);
 	}
-
-	public void SetTexIndexByDate(DateTime date)
-	{
-
-	}
-
 
 	public void SetTexIndex(int index)
 	{
@@ -101,10 +108,22 @@ public class EarthMeterialChanger : MonoBehaviour {
 		}
 	}
 
+    public void ShowLandTemp(){
+        matState = kMatStateLandTemp;
+        print("Con heo: state = " + matState);
+    }
 
-	public void ShowLandTemp()
+    public void ShowSnowCover(){
+        matState = kMatStateSnowCover;
+    }
+
+    public void ShowEarth(){
+        matState = kMatStateEarth;
+    }
+
+	private void DoShowLandTemp()
 	{
-		Debug.Log ("show 123");
+        print("con heo");
 		ShowTex (texLandTemps, texSnowCovers);
 		light.intensity = 0f;
 		lightL.intensity = 0f;
@@ -113,13 +132,14 @@ public class EarthMeterialChanger : MonoBehaviour {
 		lightB.intensity = 0f;
 	}
 
-	public void ShowSnowCover()
+
+	public void DoShowSnowCover()
 	{
-//		ShowTex (texSnowCovers);
-//		light.intensity = 1.15f;
+		ShowTex (texSnowCovers, texLandTemps);
+		light.intensity = 0f;
 	}
 
-	public void ShowEarth()
+	public void DoShowEarth()
 	{
 		ShowTex (texEarths, texEarths);
 		light.intensity = 1.15f;
@@ -136,7 +156,7 @@ public class EarthMeterialChanger : MonoBehaviour {
 		texturesL = texesL;
 		counter = 0;
 		intCounter = -1;
-		triggerChange = false;
+	    triggerChange = true;
 	}
 
 	public void RunTimeline()

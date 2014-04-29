@@ -1,4 +1,4 @@
-package me.thuanle.Astronomers;
+package me.thuanle.astronomers;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
@@ -56,15 +56,6 @@ public class NfcActivity extends Activity {
         }
 
         private String readText(NdefRecord record) throws UnsupportedEncodingException {
-        /*
-         * See NFC forum specification for "Text Record Type Definition" at 3.2.1
-         *
-         * http://www.nfc-forum.org/specs/
-         *
-         * bit_7 defines encoding
-         * bit_6 reserved for future use, must be 0
-         * bit_5..0 length of IANA language code
-         */
 
             byte[] payload = record.getPayload();
 
@@ -74,9 +65,6 @@ public class NfcActivity extends Activity {
             // Get the Language Code
             int languageCodeLength = payload[0] & 0063;
 
-            // String languageCode = new String(payload, 1, languageCodeLength, "US-ASCII");
-            // e.g. "en"
-
             // Get the Text
             return new String(payload, languageCodeLength + 1, payload.length - languageCodeLength - 1, textEncoding);
         }
@@ -85,11 +73,15 @@ public class NfcActivity extends Activity {
     private void onNfcReceive(String result) {
         Toast.makeText(getApplicationContext(), "NFC: " + result, Toast.LENGTH_LONG).show();
 
-        Intent intent = this.getIntent();
-        intent.setClass(this,MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        startActivity(intent);
-
+        try {
+            Intent intent = this.getIntent();
+            intent.setClass(this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            MainActivity.index = Integer.valueOf(result);
+            startActivity(intent);
+        }catch (Exception e){
+            Log.e(TAG, e.getMessage());
+        }
     }
 
     private static final String NFC_MIME = "text/plain";

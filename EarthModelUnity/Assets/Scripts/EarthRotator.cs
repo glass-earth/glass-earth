@@ -11,9 +11,6 @@ public class EarthRotator : MonoBehaviour {
     public bool isRotating = true;
 	private Quaternion rot0;
 
-
-
-
 	void Start()
 	{
 		rot0 = transform.rotation;

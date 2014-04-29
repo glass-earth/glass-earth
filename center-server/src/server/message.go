@@ -6,7 +6,7 @@ import (
 )
 
 const (
-	MsgTypeHandshake          = "handshake/"
+	MsgTypeHandshake          = "handshake"
 	MsgTypeHandshakeConnect   = "handshake/connect"
 	MsgTypeHandshakeReconnect = "handshake/reconnect"
 	MsgTypeHandshakeClose     = "handshake/close"
@@ -14,9 +14,13 @@ const (
 	MsgTypeHandshakeAccept    = "handshake/accept"
 	MsgTypeHandshakePeers     = "handshake/peers"
 
-	MsgTypeGraphInfo   = "graph/info"
-	MsgTypeGraphList   = "graph/list"
-	MsgTypeGraphSwitch = "graph/switch"
+	MsgTypeStoryList    = "story/list"
+	MsgTypeStoryInfo    = "story/info"
+	MsgTypeStorySwitch  = "story/switch"
+	MsgTypeGraphInfo    = "graph/info"
+	MsgTypeGraphList    = "graph/list"
+	MsgTypeGraphSwitch  = "graph/switch"
+	MsgTypeGraphWordmap = "graph/worldmap"
 
 	MsgTypeAppState = "app/state"
 
@@ -25,7 +29,8 @@ const (
 	MsgTypeEarthMoveTo        = "earth/move_to"
 	MsgTypeEarthReset         = "earth/reset"
 
-	MsgTypeLeapPointable = "leap/pointable"
+	MsgTypeLeapGestureSwipe = "leap/gesture/swipe"
+	MsgTypeLeapPointable    = "leap/pointable"
 
 	MsgTypeAck = "ack"
 
@@ -35,7 +40,9 @@ const (
 	MsgRoleLeap       = "leap"
 	MsgRoleGuest      = "guest"
 	MsgToChannel      = "channel"
-	MsgToChannelGuest = "channel_guest"
+	MsgToAppCtrl      = "app,controller"
+	MsgToCtrlGuest    = "controller,guest"
+	MsgToAll          = "app,controller,guest"
 )
 
 type Message struct {
@@ -50,6 +57,7 @@ type Message struct {
 	ToId        int    `json:"to_id,omitempty"`
 
 	Peers []MsgPeer `json:"peers,omitempty"`
+	State string    `json:"state,omitempty"`
 
 	RawData json.RawMessage `json:"data,omitempty"`
 	Data    interface{}     `json:"-"`
@@ -62,9 +70,9 @@ type MsgPeer struct {
 }
 
 type MsgState struct {
-	GraphName          string  `json:"graph_name"`
+	// GraphName          string  `json:"graph_name"`
 	EarthRotation      float64 `json:"earth_rotation"`
-	EarthVeocity       float64 `json:"earth_velocity"`
+	EarthVelocity      float64 `json:"earth_velocity"`
 	EarthTimeAnimating bool    `json:"earth_time_animating"`
 	EarthTimeStart     MsgDate `json:"earth_time_start"`
 	EarthTimeEnd       MsgDate `json:"earth_time_end"`
@@ -88,6 +96,12 @@ type MsgGraphInfo struct {
 }
 
 type MsgDate string
+
+type StoryInfo struct {
+	StoryName  string
+	StoryLabel string
+	Graphs     []string
+}
 
 func (m *Message) Marshal() ([]byte, error) {
 	var err error

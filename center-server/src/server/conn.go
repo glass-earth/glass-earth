@@ -51,7 +51,7 @@ func (c *Conn) Status() string {
 }
 
 func (c *Conn) String() string {
-	return fmt.Sprint("Conn:", c.channelName, "/", c.id, ".", c.status)
+	return fmt.Sprint("Conn:", c.channelName, "/", c.role, ".", c.id, ".", c.status)
 }
 
 func (c *Conn) Start() {

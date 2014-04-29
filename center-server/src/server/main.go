@@ -15,6 +15,11 @@ var (
 	flError    = flag.Bool("error", false, "Enable random error")
 	flPublic   = flag.String("public", "public", "Public directory")
 	flHost     = flag.String("host", "192.168.1.102", "Server IP")
+	flConfig   = flag.String("config", "config.json", "Path to config.json")
+	flData     = flag.String("data", "data", "Path to data directory")
+	flVerbose  = flag.Bool("v", false, "Verbose")
+
+	isVerbose = false
 )
 
 func logIE(msg string, err error) {
@@ -37,7 +42,9 @@ func logW(msg ...interface{}) {
 }
 
 func logV(msg ...interface{}) {
-	log.Print("[V] " + fmt.Sprintln(msg...))
+	if isVerbose {
+		log.Print("[V] " + fmt.Sprintln(msg...))
+	}
 }
 
 func expect(condition bool, text string) {
@@ -63,8 +70,9 @@ func config() {
 	if (*flPublic)[len(*flPublic)-1] == '/' {
 		*flPublic = (*flPublic)[:len(*flPublic)-1]
 	}
+	isVerbose = *flVerbose
 
-	configGraph()
+	configData()
 }
 
 func startTCPServer() {

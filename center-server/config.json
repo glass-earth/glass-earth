@@ -1,0 +1,95 @@
+{
+  "graphs": {
+    "default": {
+      "label": "Earth Surface (Day)"
+    },
+    "land_temp": {
+      "label": "Land Surface Temperature (Day)"
+    },
+    "sea_temp": {
+      "label": "Sea Temperature (Day)"
+    },
+    "snow_cover": {
+      "label": "Snow Cover"
+    },
+    "ozon": {
+      "label": "Ozon"
+    },
+    "water_vapor": {
+      "label": "Water Vapor (Day)"
+    },
+    "cloud_top_temp": {
+      "label": "Cloud Top Temperature (Day)"
+    },
+    "precipitation": {
+      "label": "Precipitation Estimate (Day)"
+    },
+    "aerosol": {
+      "label": "Aerosol Optical Depth"
+    },
+    "chlorophyll_a": {
+      "label": "Chlorophyll A"
+    },
+    "dust_score": {
+      "label": "Dust Score"
+    },
+    "so2": {
+      "label": "Sulfure Dioxide (Day, Prata Algorithm)"
+    }
+  },
+  "api": {
+    "land_temp": {
+      "label": "Land Surface Temperature (Day)"
+    },
+    "sea_temp": {
+      "label": "Sea Temperature (Day)"
+    },
+    "snow_cover": {
+      "label": "Snow Cover"
+    },
+    "ozone": {
+      "label": "Ozone"
+    },
+    "water_vapor": {
+      "label": "Water Vapor (Day)"
+    },
+    "cloud_top_temp": {
+      "label": "Cloud Top Temperature (Day)"
+    },
+    "precipitation": {
+      "label": "Precipitation Estimate (Day)"
+    },
+    "aerosol": {
+      "label": "Aerosol Optical Depth"
+    },
+    "chlorophyll_a": {
+      "label": "Chlorophyll A"
+    },
+    "dust_score": {
+      "label": "Dust Score"
+    },
+    "so2": {
+      "label": "Sulfure Dioxide (Day, Prata Algorithm)"
+    }
+  },
+  "stories": {
+    "colorado_windfires": {
+      "label": "Colorado Windfires (2012)",
+      "graphs": ["default", "land_temp", "sea_temp", "snow_cover"],
+      "time_start": "2012-05-17",
+      "time_end": "2012-07-04"
+    },
+    "nor_easter": {
+      "label": "February 2013 Nor'Easter",
+      "graphs": ["default", "snow_cover", "land_temp"],
+      "time_start": "2013-02-07",
+      "time_end": "2013-02-18"
+    },
+    "whale_migration": {
+      "label": "Whale Migration (2013)",
+      "graphs": ["default", "sea_temp", "snow_cover"],
+      "time_start": "2012-11-01",
+      "time_end": "2013-12-30"
+    }
+  }
+}

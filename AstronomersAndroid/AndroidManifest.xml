@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="me.thuanle.Astronomers"
+          package="me.thuanle.astronomers"
           android:versionCode="1"
           android:versionName="1.0">
 
@@ -16,7 +16,7 @@
             android:icon="@drawable/ic_launcher"
             android:theme="@android:style/Theme.Holo.Light.DarkActionBar">
         <activity
-                android:name="MainActivity"
+                android:name="me.thuanle.astronomers.MainActivity"
                 android:label="@string/app_name"
                 android:launchMode="singleInstance"
                 android:screenOrientation="reversePortait">
@@ -25,7 +25,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".NfcActivity"
+        <activity android:name="me.thuanle.astronomers.NfcActivity"
                 android:theme="@android:style/Theme.NoDisplay">
             <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
