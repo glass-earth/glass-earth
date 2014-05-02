@@ -6,7 +6,9 @@
 
 ## Introduction
 
-The controller connected to center server via TCP Port (default 50505). It implements Glass Earth controlling protocol based on JSON.
+Controller App allows teacher to control the whole system, join channel, select lesson and graph, open web app for students.
+
+The controller connected to center-server via TCP Port (default 50505). It implements Glass Earth controlling protocol based on JSON.
 
 **The protocol is used in hackathon event only and is supposed to change in future.**
 

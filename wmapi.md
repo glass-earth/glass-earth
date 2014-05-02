@@ -26,6 +26,8 @@ GET http://glassearth.net/wmapi/v1/land_temp?day=2013-12-02&level=1
 
 Data is reponsed as an image for the requested day. If the requested day is not in database, it will response upper nearest day. If the requested day is out of range or graph name is invalid, it will reponse 400 Bad Request.
 
+Sample response: [glassearth.net/wmapi/v1/land_temp?day=2013-12-02&level=1](http://glassearth.net/wmapi/v1/land_temp?day=2013-12-02&level=1)
+
 ### Graph Name
 
 These graphs are currently supported:
