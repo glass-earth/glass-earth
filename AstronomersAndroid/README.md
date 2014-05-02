@@ -2,7 +2,7 @@
 
 > Controller App for Glass Earth on Android
 
-![Android Controller][https://raw.githubusercontent.com/glass-earth/glass-earth/master/artwork/android-controller.png]
+![Android Controller](https://raw.githubusercontent.com/glass-earth/glass-earth/master/artwork/android-controller.png)
 
 ## Introduction
 
@@ -18,7 +18,7 @@ The controller connected to center server via TCP Port (default 50505). It imple
 
 * Select lesson and switch graph
 
-  Teacher can browse and select lesson using navigation menu. Each lesson may contain many graphs. They can easily switch current graph by dragging on screen. Unity App will update current graph and student Web App will update content immediately.
+  Teacher can browse and select lesson using navigation menu. Each lesson may contain many graphs. They can easily switch current graph by dragging finger on screen. Unity App will update current graph and student Web App will update content immediately.
 
 * Use NFC tag to activate story
 
