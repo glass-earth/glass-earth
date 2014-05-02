@@ -2,10 +2,12 @@
 
 Glass Earth API is an API that provides imagery of the Earth from NASA's satellites. Having been processed to filter noise and reduce missed data, the imagery is displayed in a more correct and simpler way for users and scientists to access.
 
+**Note: This is data processor for Glass Earth using GIBS service. To access the public API, click [WMAPI](http://glassearth.net/wmapi)**
+
 ![compare result][1]
 
 ## Download
-JAR: 
+JAR:
 > [WMGlassEarthAPI.v1.jar](https://dl.dropboxusercontent.com/u/36585213/OpenSource%20Resource/nasaisac2014/WMGlassEarthAPI.v1.jar)
 
 ## Setup

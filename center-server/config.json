@@ -27,7 +27,7 @@
     "aerosol": {
       "label": "Aerosol Optical Depth"
     },
-    "chlorophyll_a": {
+    "chlorophylla": {
       "label": "Chlorophyll A"
     },
     "dust_score": {
@@ -62,7 +62,7 @@
     "aerosol": {
       "label": "Aerosol Optical Depth"
     },
-    "chlorophyll_a": {
+    "chlorophylla": {
       "label": "Chlorophyll A"
     },
     "dust_score": {

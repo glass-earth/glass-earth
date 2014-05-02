@@ -20,7 +20,8 @@ Glass Earth uses these tools & SDKs:
 1. **[Unity Game Engine](https://unity3d.com/)**
 * **[Android SDK](http://developer.android.com/sdk)**
 * **[Leap Motion SDK](https://www.leapmotion.com/developers)**
-* **[Go](http://golang.org)**
+* **[JDK 8](http://www.oracle.com/technetwork/java/javase)**
+* **[Go 1.2](http://golang.org)**
 
 ### Structure
 
@@ -74,8 +75,8 @@ Follow the instruction in [getting-started.md](https://github.com/glass-earth/gl
 
 This project is created by:
 
-* Anh Minh
 * Anh Nguyen
+* Anh Tran
 * Thuan Le
 * Tuan Chau
 * Vu Nguyen

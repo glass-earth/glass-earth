@@ -1,0 +1,29 @@
+<div class="timeline bg-highlight">
+    <div class="timeline-inner">
+        <ul id="timeline-content">
+            <li class="active">
+                <h4 class="highlight no-top no-bot">Welcome to GlassEarth</h4>
+                <h6 class="highlight no-top">April 14</h6>
+
+                <p class="timeline-detail">
+                    GlassEarth 2014
+                </p>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    $('ul#timeline-content li.active .timeline-detail').show();
+    $('title').html('WELCOME TO GLASS EARTH');
+
+    $('ul#timeline-content li').prepend('<div class="list-symbol"></div>');
+    $('.bg-highlight').css('background', '#297b9f');
+    $('.highlight').css('color', '#297b9f');
+    $('.list-symbol').css('background', '#297b9f');
+
+    $('#main-title').html('GLASS EARTH');
+    $('#sub-title').html('WELCOME');
+
+    $('#cover-photo-img').attr('src', 'assets/images/default.jpg');
+</script>

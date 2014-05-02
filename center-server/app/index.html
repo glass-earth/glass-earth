@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WELCOME TO GLASS EARTH</title>
+
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/cover.css" rel="stylesheet">
+    <link href="assets/css/animation.css" rel="stylesheet">
+    <link href="assets/css/jquery.fancybox.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="site-wrapper">
+
+    <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+            <div class="masthead bg-highlight clearfix" style="z-index:10">
+                <div class="inner">
+                    <h3 id="main-title" class="masthead-brand">GLASS EARTH</h3>
+                    <h5 id="sub-title" class="masthead-brand">WELCOME</h5>
+                </div>
+            </div>
+
+            <div class="cover-photo">
+                <img id='cover-photo-img'
+                     src="assets/images/default.jpg"
+                     class="img-responsive"/>
+            </div>
+
+            <div id="inner-content" class="inner cover">
+                <div class="timeline bg-highlight">
+                    <div class="timeline-inner">
+                        <ul id="timeline-content">
+                            <li class="active">
+                                <h4 class="highlight no-top no-bot">Welcome to GlassEarth</h4>
+                                <h6 class="highlight no-top">April 14</h6>
+
+                                <p class="timeline-detail">
+                                    GlassEarth 2014
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+           <!--  <div class="mastfoot">
+                <div class="inner">
+                    <p>Powered by <a class="highlight" href="http://getbootstrap.com">Bootstrap</a>, template by <a
+                            class="highlight" href="https://twitter.com/mdo">@mdo</a>.</p>
+                </div>
+            </div> -->
+
+        </div>
+
+    </div>
+
+</div>
+
+<a href="#" id="toTop" style="display: block;">
+    <span id="toTopHover" style="opacity: 1;"/>
+</a>
+
+<a href='#toc' class='popup-with-zoom-anim'>
+    <div class="tip"><span id="tip-count">3</span></div>
+</a>
+
+<div id="toc" style="display: none;">
+    <div id='toc-content' class="wmuSlider">
+        <article>
+            <div class="banner-wrap">
+                <div class="cont span_2_of_3">
+                    <h3><a class="story-anchor" href="channel_story/default.html">Welcome to GlassEarth</a></h3>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </article>
+        <article>
+            <div class="banner-wrap">
+                <div class="cont span_2_of_3">
+                    <h3><a class="story-anchor" href="channel_story/colorado-wildfires.html">Colorado Wildfires</a></h3>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </article>
+        <article>
+            <div class="banner-wrap">
+                <div class="cont span_2_of_3">
+                    <h3><a class="story-anchor" href="channel_story/whale-migration.html">Whale migration</a></h3>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </article>
+    </div>
+</div>
+
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/websocket.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/move-top.js"></script>
+<script src="assets/js/easing.js"></script>
+<script src="assets/js/jquery.fancybox.pack.js"></script>
+<script src="assets/js/jquery.wmuSlider.js"></script>
+
+<script>
+    var doc = $(document);
+
+    var loadajax = function (url) {
+        $.ajax({
+            url: url,
+            success: function (data) {
+                console.log(data);
+//                $('#inner-content').empty();
+                $('#inner-content').html(data);
+            }
+        });
+    };
+
+    var onInfo = function (url, title) {
+        var count = $('#tip-count').text();
+        console.log("count = " + count);
+        if (count === '') {
+            count = 1;
+        } else {
+            count = parseInt(count)+1;
+        }
+        $('#tip-count').text(count);
+
+        var elem = $('<article><div class="banner-wrap"><div class="cont span_2_of_3"><h3></h3></div><div class="clear"></div></div></article>');
+        var anchor = $('<a class="story-anchor">');
+        anchor.attr('href',url);
+        anchor.html(title);
+
+        elem.find('h3').html(anchor);
+        $('#toc-content').append(elem);
+
+        $('#toc-content').wmuSlider({
+            slideshowSpeed: 0,
+            touch: true
+        });
+    };
+
+    doc.ready(function () {
+
+        $('.popup-with-zoom-anim').fancybox({
+            openEffect: 'fade',
+            closeEffect: 'fade',
+            autoSize:true,
+            minWidth:333,
+            helpers: {
+                overlay: {
+                    css: {
+                        'background': 'rgba(0, 0, 0, 0.75)'
+                    }
+                }
+            }
+        });
+
+        $('#toc-content').wmuSlider({
+            slideshowSpeed: 0,
+            touch: true
+        });
+
+        $('ul#timeline-content li').prepend('<div class="list-symbol"></div>');
+        $('.bg-highlight').css('background', '#297b9f');
+        $('.highlight').css('color', '#297b9f');
+        $('.list-symbol').css('background', '#297b9f');
+
+        var defaults = {
+            containerID: 'toTop', // fading element id
+            containerHoverID: 'toTopHover', // fading element hover id
+            scrollSpeed: 1200,
+            min: 50,
+            easingType: 'linear'
+        };
+
+        $().UItoTop({
+            text: '',
+            easingType: 'easeOutQuart',
+            scrollSpeed: 200,
+            min: 50
+        });
+
+        $('ul#timeline-content li.active .timeline-detail').show();
+
+        doc.on('click', 'ul#timeline-content li', function (e) {
+            console.log(e.target);
+            $('ul#timeline-content li.active').removeClass('active');
+            var that = this;
+            $(that).find('.timeline-detail').slideToggle('fast');
+            $(that).toggleClass('active');
+        });
+
+        // logic
+
+        var server_url = "ws://echo.websocket.org";
+
+        clientSocket.init(server_url);
+        clientSocket.oninfo = onInfo;
+
+        $('#toc-content').on('click','.story-anchor',function(event){
+            event.preventDefault();
+            loadajax($(this).attr('href'));
+            $.fancybox.close();
+        });
+
+        // load content
+        console.log("hash", location.hash);
+        if (location.hash == "#colorado-wildfires") {
+            console.log("colorado");
+            loadajax("channel_story/colorado-wildfires.html");
+
+        } else if (location.hash == "#whale-migration") {
+            loadajax("channel_story/whale-migration.html");
+
+        } else {
+            location.hash = "";
+        }
+    });
+</script>
+</body>
+</html>

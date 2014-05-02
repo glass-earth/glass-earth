@@ -50,6 +50,11 @@ func BadRequest(w http.ResponseWriter, r *http.Request) {
 
 func handleApi(w http.ResponseWriter, r *http.Request) {
 
+	if r.URL.Path == "/wmapi/" {
+		http.Redirect(w, r, "https://github.com/glass-earth/glass-earth/blob/master/wmapi.md", http.StatusTemporaryRedirect)
+		return
+	}
+
 	// /wmapi/v1/land_temp?day=2013-12-02&level=1
 	logV("requestUrl", r.URL.RequestURI())
 	parts := strings.Split(r.URL.Path, "/")

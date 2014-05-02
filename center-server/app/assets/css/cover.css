@@ -1,0 +1,335 @@
+/*
+ * Globals
+ */
+
+/* Links */
+
+body {
+    font-family: Roboto, sans-serif;
+}
+
+a,
+a:focus,
+a:hover {
+    color: #000;
+}
+
+/* Custom default button */
+.btn-default,
+.btn-default:hover,
+.btn-default:focus {
+    color: #fff;
+    text-shadow: none; /* Prevent inheritence from `body` */
+    background-color: #333;
+    border: 1px solid #333;
+}
+
+/*
+ * Base structure
+ */
+
+html,
+body {
+    height: 100%;
+    background-color: #fff;
+}
+
+body {
+    color: #333;
+    text-align: center;
+    /*text-shadow: 0 1px 3px rgba(0,0,0,.5);*/
+    /*box-shadow: inset 0 0 100px rgba(0,0,0,.5);*/
+}
+
+/* Extra markup and styles for table-esque vertical and horizontal centering */
+.site-wrapper {
+    display: table;
+    width: 100%;
+    height: 100%; /* For at least Firefox */
+    min-height: 100%;
+}
+
+.site-wrapper-inner {
+    display: table-cell;
+    vertical-align: top;
+}
+
+.cover-container {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+/* Padding for spacing */
+.inner {
+    padding: 10px 20px 0px 20px;
+}
+
+/*
+ * Header
+ */
+.masthead-brand {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.masthead-nav > li {
+    display: inline-block;
+}
+
+.masthead-nav > li + li {
+    margin-left: 20px;
+}
+
+.masthead-nav > li > a {
+    padding-right: 0;
+    padding-left: 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff; /* IE8 proofing */
+    color: rgba(255, 255, 255, .75);
+    border-bottom: 2px solid transparent;
+}
+
+.masthead-nav > li > a:hover,
+.masthead-nav > li > a:focus {
+    background-color: transparent;
+    border-bottom-color: rgba(255, 255, 255, .25);
+}
+
+.masthead-nav > .active > a,
+.masthead-nav > .active > a:hover,
+.masthead-nav > .active > a:focus {
+    color: #fff;
+    border-bottom-color: #fff;
+}
+
+@media (min-width: 768px) {
+    .masthead-brand {
+        float: left;
+    }
+
+    .masthead-nav {
+        float: right;
+    }
+}
+
+/*
+ * Cover
+ */
+
+.cover {
+    padding: 0 20px;
+}
+
+.cover .btn-lg {
+    padding: 10px 20px;
+    font-weight: bold;
+}
+
+/*
+ * Footer
+ */
+
+.mastfoot {
+    color: #333; /* IE8 proofing */
+    color: rgba(0, 0, 0, .5);
+}
+
+/*
+ * Affix and center
+ */
+
+@media (min-width: 768px) {
+    /* Pull out the header and footer */
+    .masthead {
+        position: fixed;
+        top: 0;
+    }
+
+    .mastfoot {
+        position: fixed;
+        bottom: 0;
+    }
+
+    /* Start the vertical centering */
+    .site-wrapper-inner {
+        vertical-align: middle;
+    }
+
+    /* Handle the widths */
+    .masthead,
+    .mastfoot,
+    .cover-container {
+        width: 100%; /* Must be percentage or pixels for horizontal alignment */
+    }
+}
+
+@media (min-width: 992px) {
+    .masthead,
+    .mastfoot,
+    .cover-container {
+        width: 700px;
+    }
+}
+
+@font-face {
+    font-family: nasa;
+    src: url(../fonts/nasa.ttf);
+}
+
+.masthead {
+    color: #fff;
+}
+
+.masthead-brand {
+    font-family: nasa, verdana;
+    line-height: 12px;
+    float: none;
+}
+
+.mastfoot {
+    background: #333;
+    color: #fff;
+}
+
+.mastfoot p {
+    margin-bottom: 0;
+    padding-bottom: 10px;
+}
+
+html {
+    padding: 0;
+    margin: 0;
+}
+
+.cover-photo {
+    background: #333;
+    overflow: hidden;
+}
+
+.timeline {
+    padding-left: 3px;
+    text-shadow: none;
+}
+
+.timeline-inner {
+    background: #fff;
+    text-align: left;
+    min-height: 300px;
+}
+
+ul#timeline-content {
+    list-style-type: none;
+    /*list-style-image: url('../images/circle.png');*/
+    padding-left: 0px;
+}
+
+.no-bot {
+    margin-bottom: 0;
+}
+
+.no-top {
+    margin-top: 0;
+}
+
+ul#timeline-content li {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 11px;
+    position: relative;
+}
+
+.timeline-detail {
+    display: none;
+}
+
+#toTop {
+    display: none;
+    text-decoration: none;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    overflow: hidden;
+    width: 32px;
+    height: 32px;
+    border: none;
+    text-indent: 100%;
+    background: url(../images/top-move.png) no-repeat right top;
+    z-index: 1;
+}
+
+.clear {
+    clear: both;
+}
+
+.wmuSlider {
+    position: relative;
+    overflow: hidden;
+    padding: 30px;
+}
+
+.wmuSlider .wmuSliderWrapper article {
+    position: relative;
+    text-align: center;
+}
+
+.wmuSliderPrev, .wmuSliderNext {
+    position: absolute;
+    width: 48px;
+    height: 42px;
+    text-indent: -9999px;
+    background: url(../images/img-sprite.png) no-repeat;
+    top: 30%;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.wmuSliderPrev {
+    background-position: 20px 3px;
+    left: -30px;
+}
+
+.wmuSliderNext {
+    background-position: -27px 3px;
+    right: -30px;
+}
+
+#tip-count {
+}
+
+.list-symbol {
+    position: absolute;
+    left: -7px;
+    top: 16px;
+    width: 10px;
+    height: 10px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+#ref-box {
+    text-align: left;
+    background: white;
+}
+
+#ref-list {
+    text-align: left;
+}
+
+#timeline-content h4{
+    cursor: pointer;
+}
+
+h4.ref{
+    font-weight: bold;
+    text-align: left;
+}
+
+img.content-img{
+    display: block;
+    max-width: 350px;
+    text-align: center;
+    margin-bottom: 10pt;
+
+}
