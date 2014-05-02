@@ -88,7 +88,7 @@ TBU. Read more [glassearth.net/controller](http://glassearth.net/controller)
   go get code.google.com/p/go.net/websocket
   ```
 
-### Build and server
+### Build and start server
 
 * Windows
 
