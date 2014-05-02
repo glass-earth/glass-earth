@@ -25,19 +25,19 @@ Glass Earth uses these tools & SDKs:
 
 ### Structure
 
-1. **EarthModelUnity (Unity App)**
+1. **[EarthModelUnity (Unity App)](https://github.com/glass-earth/glass-earth/tree/master/EarthModelUnity)**
 
   Render graph from [GIBS](https://wiki.earthdata.nasa.gov/display/GIBS/GIBS+Available+Imagery+Products) onto an Earth model. It has two scenes. One scene renders 4 viewports of Earth for displaying the 3D model inside prism. The other renders 4 different graphs for displaying on projector. The application connects to **center-server** for receiving controlling messages from **Leap Motion** and **controller**.
 
-2. **LeapMotion**
+2. **[LeapMotion](https://github.com/glass-earth/glass-earth/tree/master/LeapMotion)**
 
   Control the graphs using Leap Motion.
 
-3. **AstronomersAndroid (Controller)**
+3. **[AstronomersAndroid (Controller)](https://github.com/glass-earth/glass-earth/tree/master/AstronomersAndroid)**
 
   Control the graphs using Android tablet. Supports NFC and gesture. This application allows teacher to select current lesson and control whole system. Students may tap their smartphone to open **web application** via NFC.
 
-4. **center-server**
+4. **[center-server](https://github.com/glass-earth/glass-earth/tree/master/center-server)**
 
   **Control server** connects other devices, manage state of whole system and forwards messages between **EarthModelUnity**, **Leap Motion**, **controller** and **web application**.
 
@@ -47,7 +47,7 @@ Glass Earth uses these tools & SDKs:
 
   **API server** at /wmapi/
 
-5. **gibs-data**
+5. **[gibs-data](https://github.com/glass-earth/glass-earth/tree/master/gibs-data)**
 
   Download and process data from GIBS service. More information: [github.com/glass-earth/glass-earth/tree/master/gibs-data](https://github.com/glass-earth/glass-earth/tree/master/gibs-data)
 
